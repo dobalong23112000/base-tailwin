@@ -1,20 +1,20 @@
+import { ISignIn } from "../../types/user.interface";
 import axiosClient from "../axiosClient";
-
 
 const authApi = {
   // dang nhap
-  signIn: (params: unknown) => {
-    const url = '/account/login';
+  signIn: (params: ISignIn) => {
+    const url = '/auth/login';
     return axiosClient.post(url, params);
   },
   // dang xuat
   signOut: (params: unknown) => {
-    const url = '/account/logout';
+    const url = '/auth/logout';
     return axiosClient.post(url, params);
   },
   // lay thong tin user
   getCurrentUserInfo: (params: unknown) => {  
-    const url = '/account/current-user';
+    const url = '/auth/current-user';
     return axiosClient.get(url, { params });
   },
 };

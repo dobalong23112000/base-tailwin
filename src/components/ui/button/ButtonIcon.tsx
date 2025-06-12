@@ -4,28 +4,24 @@ interface ButtonProps {
   children: ReactNode; // Button text or content
   size?: "sm" | "md" | "lg"; // Button size
   variant?: "primary" | "outline" | "critical" | "secondary" | 'neutral'; // Button variant
-  startIcon?: ReactNode; // Icon before the text
-  endIcon?: ReactNode; // Icon after the text
   onClick?: () => void; // Click handler
   disabled?: boolean; // Disabled state
   className?: string; // Disabled state
 }
 
-const Button: React.FC<ButtonProps> = ({
+const ButtonIcon: React.FC<ButtonProps> = ({
   children,
   size = "md",
   variant = "primary",
-  startIcon,
-  endIcon,
   onClick,
   className = "",
   disabled = false,
 }) => {
   // Size Classes
   const sizeClasses = {
-    sm: "px-2 py-1 text-xs w-56 h-7 rounded-lg",
-    md: "px-4 py-2 text-sm w-56 h-9 rounded-lg",
-    lg: "px-4 py-3 text-sm w-56 h-11 rounded-xl"
+    sm: "px-1 py-1 text-xs w-6 h-6 rounded-lg",
+    md: "px-2 py-2 text-sm w-9 h-9 rounded-lg",
+    lg: "px-3 py-3 text-sm w-11 h-11 rounded-xl"
   };
 
   // Variant Classes
@@ -46,13 +42,10 @@ const Button: React.FC<ButtonProps> = ({
       }`}
       onClick={onClick}
       disabled={disabled}
-      type="button"
     >
-      {startIcon && <span className="flex items-center">{startIcon}</span>}
       {children}
-      {endIcon && <span className="flex items-center">{endIcon}</span>}
     </button>
   );
 };
 
-export default Button;
+export default ButtonIcon;

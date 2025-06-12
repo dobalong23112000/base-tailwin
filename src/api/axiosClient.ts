@@ -1,10 +1,10 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { stringify } from 'query-string';
+import queryString from 'query-string';
 import PreferenceKeys from '../general/constants/PreferenceKeys';
-
+const { stringify } = queryString;
 const axiosClient = axios.create({
-  baseURL: import.meta.env.QLBH_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'content-type': 'application/json',
   },

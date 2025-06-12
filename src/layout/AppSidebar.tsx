@@ -16,7 +16,6 @@ import {
   UserCircleIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
-import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
   name: string;
@@ -80,6 +79,7 @@ const othersItems: NavItem[] = [
       { name: "Buttons", path: "/buttons", pro: false },
       { name: "Images", path: "/images", pro: false },
       { name: "Videos", path: "/videos", pro: false },
+       { name: "Icons", path: "/icons", pro: false },
     ],
   },
   {
@@ -285,13 +285,13 @@ const AppSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
+      className={`fixed mt-16 flex flex-col lg:mt-0 top-4 px-5 left-4 bg-brand-500 rounded-2xl dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-[calc(100vh-32px)] transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
         ${
           isExpanded || isMobileOpen
-            ? "w-[290px]"
+            ? "w-[296px]"
             : isHovered
-            ? "w-[290px]"
-            : "w-[90px]"
+            ? "w-[296px]"
+            : "w-[92px]"
         }
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0`}
@@ -368,7 +368,7 @@ const AppSidebar: React.FC = () => {
             </div>
           </div>
         </nav>
-        {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null}
+        {/* {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null} */}
       </div>
     </aside>
   );

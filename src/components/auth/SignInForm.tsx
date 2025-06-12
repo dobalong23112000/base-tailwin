@@ -1,24 +1,40 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Label from "../form/Label";
 import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
 import * as Yup from 'yup';
-import {  Formik } from 'formik';
+import { Formik } from 'formik';
 import InputField from "../form/InputField";
 import InputFieldPassword from "../form/InputFieldPassword";
+import { ISignIn } from "../../types/user.interface";
+import authApi from "../../api/petro/authApi";
+import PreferenceKeys from "../../general/constants/PreferenceKeys";
 export default function SignInForm() {
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate()
   const initialValues = {
-    email: '',
+    username: '',
     password: '',
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (values: any) => {
-    console.log(values);
+  const onSubmit = async (values: ISignIn) => {
+    try {
+      const {data, status} = await authApi.signIn(values);
+      const {token, accessTokenExpired } = data
+      if (status === 200) {
+        localStorage.setItem(PreferenceKeys.accessToken, token);
+        localStorage.setItem(PreferenceKeys.accessTokenExpired, accessTokenExpired);
+
+        navigate('/')
+      }
+    } catch (e) {
+      console.error('Lỗi hệ thống:', e);
+    }
+
   }
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required(),
+    username: Yup.string().required(),
     password: Yup.string().trim().required(),
   });
   return (
@@ -98,14 +114,14 @@ export default function SignInForm() {
                       <Label>
                         Email <span className="text-error-500">*</span>{" "}
                       </Label>
-                      <InputField name="email" placeholder="Enter email" />
+                      <InputField name="username" placeholder="Enter email" />
                     </div>
                     <div>
                       <Label>
                         Password <span className="text-error-500">*</span>{" "}
                       </Label>
                       <div className="relative">
-                        <InputFieldPassword name="password" placeholder="Enter your password" type={"password"}/>
+                        <InputFieldPassword name="password" placeholder="Enter your password" type={"password"} />
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
@@ -123,7 +139,7 @@ export default function SignInForm() {
                       </Link>
                     </div>
                     <div>
-                      <Button className="w-full" size="sm">
+                      <Button className="w-full" size="md">
                         Sign in
                       </Button>
                     </div>

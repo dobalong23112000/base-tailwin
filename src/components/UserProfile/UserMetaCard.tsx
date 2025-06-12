@@ -1,8 +1,9 @@
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../ui/modal";
-import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import Label from "../form/Label";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import Button from "@/components/ui/button/Button";
 
 export default function UserMetaCard() {
   const { isOpen, openModal, closeModal } = useModal();
@@ -13,6 +14,37 @@ export default function UserMetaCard() {
   };
   return (
     <>
+      <Dialog>
+        <form>
+          <DialogTrigger asChild>
+            <Button size="md" variant="primary">Open Dialog </Button>
+            {/* <button>Open Dialog</button> */}
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[50vw]">
+            <DialogHeader>
+              <DialogTitle>Edit profile</DialogTitle>
+              <DialogDescription>
+                Make changes to your profile here. Click save when you&apos;re
+                done.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4">
+              <div className="grid gap-3">
+                <h1>AAAAAA</h1>
+              </div>
+              <div className="grid gap-3">
+                <h1>Username</h1>
+              </div>
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="critical" size="md"> Cancel</Button>
+              </DialogClose>
+              <Button variant="primary" size="md" > Save</Button>
+            </DialogFooter>
+          </DialogContent>
+        </form>
+      </Dialog>
       <div className="p-5 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
           <div className="flex flex-col items-center w-full gap-6 xl:flex-row">

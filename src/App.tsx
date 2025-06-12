@@ -18,11 +18,12 @@ const BasicTables = lazy(() => import('./pages/Tables/BasicTables'));
 const FormElements = lazy(() => import('./pages/Forms/FormElements'));
 const Blank = lazy(() => import('./pages/Blank'));
 const Home = lazy(() => import('./pages/Dashboard/Home'));
-
+const Icons = lazy(() => import('./pages/UiElements/Icons'));
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import PrivateRoute from "./general/components/AppRoutes/PrivateRoute";
 import GuestRoute from "./general/components/AppRoutes/GuestRoute";
+
 
 
 export default function App() {
@@ -57,7 +58,7 @@ export default function App() {
               <Route path="/buttons" element={<Buttons />} />
               <Route path="/images" element={<Images />} />
               <Route path="/videos" element={<Videos />} />
-
+              <Route path="/icons" element={<Icons />} />
               {/* Charts */}
               <Route path="/line-chart" element={<LineChart />} />
               <Route path="/bar-chart" element={<BarChart />} />
